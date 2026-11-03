@@ -50,6 +50,21 @@ Via CLI:
 odoo-bin -c odoo.conf -d nama_database -i pemesanan_atk --stop-after-init
 ```
 
+Di Windows nama binary-nya `odoo-bin.exe` dan path-nya mengandung spasi, jadi
+perlu dikutip penuh:
+
+```powershell
+& "C:\Program Files (x86)\Odoo 10.0\server\odoo-bin.exe" `
+  -c "C:\Program Files (x86)\Odoo 10.0\server\odoo.conf" `
+  -d nama_database --xmlrpc-port=8071 -i pemesanan_atk --stop-after-init
+```
+
+- Ganti `-i` menjadi `-u` kalau modul sudah terpasang dan hanya ingin
+  memperbarui.
+- `--xmlrpc-port` perlu ditambah kalau service Odoo lain sedang memakai 8069.
+- Database baru hasil instal berisi data kosong (belum ada barang/departemen),
+  jadi isi dulu **Master > Barang ATK** dan **Master > Departemen**.
+
 Setelah terpasang, berikan grup **Pemesanan ATK / Manager** kepada user yang
 akan menyetujui pengajuan (Settings > Users).
 
