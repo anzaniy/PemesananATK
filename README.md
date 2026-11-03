@@ -11,14 +11,6 @@ Draft  ->  Diajukan (RFA)  ->  Disetujui
 
 Dibuat sebagai proyek individu, bukan bagian dari modul perusahaan mana pun.
 
-## Isi repo
-
-| Path | Keterangan |
-|---|---|
-| `pemesanan_atk/` | Modul Odoo (folder ini yang dipasang ke addons) |
-| `pemesanan_atk/README.md` | Dokumentasi modul: fitur, instalasi, penggunaan |
-| `pemesanan_atk/LICENSE` | LGPL-3 |
-
 ## Instalasi singkat
 
 Prasyarat: Odoo 10 dan modul [OCA `report_xlsx`](https://github.com/OCA/reporting-engine)
@@ -30,7 +22,7 @@ git clone https://github.com/anzaniy/PemesananATK.git
 odoo-bin -c odoo.conf -d nama_database -i pemesanan_atk --stop-after-init
 ```
 
-Setelah terpasang, berikan grup **Pemesanan ATK / Manager** kepada user yang
+Setelah terpasang, berikan role **Pemesanan ATK / Manager** kepada user yang
 akan menyetujui pengajuan (Settings > Users).
 
 ## Fitur
