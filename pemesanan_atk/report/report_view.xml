@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <report
+            id="report_transaksi"
+            model="pemesanan_atk.transaksi_barang"
+            string="Laporan Transaksi (PDF)"
+            report_type="qweb-pdf"
+            name="pemesanan_atk.my_report_transaksi"
+            file="pemesanan_atk.my_report_transaksi"
+        />
+
+        <report
+            id="report_transaksi_xlsx"
+            model="pemesanan_atk.transaksi_barang"
+            string="Laporan Transaksi (Excel)"
+            report_type="xlsx"
+            name="pemesanan_atk.transaksi_report_xlsx"
+            file="pemesanan_atk.transaksi_report_xlsx"
+            attachment_use="False"
+        />
+    </data>
+</odoo>

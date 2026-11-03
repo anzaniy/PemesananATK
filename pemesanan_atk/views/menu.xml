@@ -1,0 +1,6 @@
+<odoo>
+    <data>
+        <menuitem id="menu_root" name="Pemesanan ATK" sequence="10"
+                  web_icon="pemesanan_atk,static/description/icon.png"/>
+    </data>
+</odoo>

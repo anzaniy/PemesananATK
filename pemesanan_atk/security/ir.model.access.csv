@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_department_user,department user,model_pemesanan_atk_department,group_user,1,0,0,0
+access_department_manager,department manager,model_pemesanan_atk_department,group_manager,1,1,1,1
+access_barang_atk_user,barang atk user,model_pemesanan_atk_barang_atk,group_user,1,0,0,0
+access_barang_atk_manager,barang atk manager,model_pemesanan_atk_barang_atk,group_manager,1,1,1,1
+access_transaksi_user,transaksi user,model_pemesanan_atk_transaksi_barang,group_user,1,1,1,1
+access_transaksi_manager,transaksi manager,model_pemesanan_atk_transaksi_barang,group_manager,1,1,1,1
+access_transaksi_line_user,transaksi line user,model_pemesanan_atk_transaksi_line,group_user,1,1,1,1
+access_transaksi_line_manager,transaksi line manager,model_pemesanan_atk_transaksi_line,group_manager,1,1,1,1
+access_rekapan_user,rekapan user,model_pemesanan_atk_wizard_rekapan_laporan,group_user,1,1,1,1
+access_rekapan_manager,rekapan manager,model_pemesanan_atk_wizard_rekapan_laporan,group_manager,1,1,1,1

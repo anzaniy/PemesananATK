@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="my_report_transaksi">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.internal_layout">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h1 class="text-center">Laporan Transaksi ATK</h1>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2>Informasi Transaksi</h2>
+                                    <p><strong>No. Dokumen:</strong> <t t-esc="o.name"/></p>
+                                    <p><strong>Departemen:</strong> <t t-esc="o.department_id.name"/></p>
+                                    <p><strong>Tanggal:</strong> <t t-esc="o.tanggal_pemesanan"/></p>
+                                    <p><strong>Status:</strong>
+                                        <t t-if="o.state == 'draft'">Draft</t>
+                                        <t t-elif="o.state == 'rfa'">Diajukan</t>
+                                        <t t-elif="o.state == 'approved'">Disetujui</t>
+                                        <t t-else="">Ditolak</t>
+                                    </p>
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Barang</th>
+                                                <th>Jumlah</th>
+                                                <th>Harga</th>
+                                                <th>Total Harga</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-set="total_harga" t-value="0"/>
+                                            <t t-foreach="o.transaksi_line_ids" t-as="line">
+                                                <tr>
+                                                    <td><t t-esc="line.barang_id.name"/></td>
+                                                    <td><t t-esc="line.jumlah"/></td>
+                                                    <td><t t-esc="line.barang_id.harga_barang"/></td>
+                                                    <td><t t-esc="line.total_harga"/></td>
+                                                    <t t-set="total_harga" t-value="total_harga + line.total_harga"/>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3"><strong>Total Harga:</strong></td>
+                                                <td><t t-esc="total_harga"/></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

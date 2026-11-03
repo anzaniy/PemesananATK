@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_rekapan_form">
+            <field name="name">pemesanan_atk.wizard_rekapan_laporan.form</field>
+            <field name="model">pemesanan_atk.wizard_rekapan_laporan</field>
+            <field name="arch" type="xml">
+                <form string="Rekap Laporan">
+                    <group>
+                        <field name="state"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <footer>
+                        <button name="cetak_rekapan" type="object" string="Buat Rekap"
+                                class="oe_highlight"/>
+                        <button special="cancel" string="Batal"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_rekapan"
+                    name="Rekap Laporan"
+                    res_model="pemesanan_atk.wizard_rekapan_laporan"
+                    view_mode="form"
+                    view_id="view_rekapan_form"
+                    target="new"/>
+
+        <menuitem id="menu_laporan" name="Laporan" sequence="30" parent="menu_root"/>
+        <menuitem id="menu_rekapan" name="Rekap Laporan" parent="menu_laporan"
+                  action="action_rekapan"/>
+    </data>
+</odoo>

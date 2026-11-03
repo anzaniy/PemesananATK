@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+    <record id="action_transaksi" model="ir.actions.act_window">
+        <field name="name">Transaksi</field>
+        <field name="res_model">pemesanan_atk.transaksi_barang</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Klik tombol Create untuk membuat pengajuan ATK baru.
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_transaksi_tree">
+        <field name="name">pemesanan_atk.transaksi_barang.tree</field>
+        <field name="model">pemesanan_atk.transaksi_barang</field>
+        <field name="arch" type="xml">
+            <tree decoration-info="state == 'rfa'"
+                  decoration-success="state == 'approved'"
+                  decoration-danger="state == 'reject'"
+                  decoration-muted="state == 'draft'">
+                <field name="tanggal_pemesanan"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="total_harga"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_transaksi_form" model="ir.ui.view">
+        <field name="name">pemesanan_atk.transaksi_barang.form</field>
+        <field name="model">pemesanan_atk.transaksi_barang</field>
+        <field name="arch" type="xml">
+            <form string="Transaksi">
+                <header>
+                    <button name="action_submit" type="object" string="Ajukan"
+                            states="draft" class="btn-primary"/>
+                    <button name="action_approve" type="object" string="Setujui"
+                            states="rfa" class="btn-primary"
+                            groups="pemesanan_atk.group_manager"/>
+                    <button name="action_reject" type="object" string="Tolak"
+                            states="rfa"
+                            groups="pemesanan_atk.group_manager"/>
+                    <button name="action_print_pdf" type="object" string="Cetak PDF"/>
+                    <button name="action_print_xlsx" type="object" string="Cetak Excel"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,rfa,approved,reject"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" autocomplete="off"
+                               attrs="{'readonly':[('state','not in',('draft','rfa'))]}"/>
+                        <field name="department_id"
+                               attrs="{'readonly':[('state','not in',('draft','rfa'))]}"/>
+                        <field name="tanggal_pemesanan"
+                               attrs="{'readonly':[('state','not in',('draft','rfa'))]}"/>
+                    </group>
+                    <group string="Rincian Barang">
+                        <field name="transaksi_line_ids" nolabel="1"
+                               attrs="{'readonly':[('state','not in',('draft','rfa'))]}">
+                            <tree editable="true">
+                                <field name="barang_id" domain="[('active','=',True)]"/>
+                                <field name="jumlah"/>
+                                <field name="total_harga" readonly="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="total_harga" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="menu_transaksi" name="Transaksi" sequence="20" parent="menu_root"/>
+    <menuitem id="menu_form_transaksi" name="Form Transaksi" parent="menu_transaksi"
+              action="action_transaksi"/>
+
+    </data>
+</odoo>

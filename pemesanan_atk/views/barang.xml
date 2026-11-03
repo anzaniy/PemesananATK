@@ -1,0 +1,51 @@
+<odoo>
+  <data>
+
+    <record id="action_barang_atk" model="ir.actions.act_window">
+      <field name="name">Barang ATK</field>
+      <field name="res_model">pemesanan_atk.barang_atk</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Klik tombol Create untuk menambahkan barang ATK.
+        </p>
+      </field>
+    </record>
+
+    <record id="view_barang_atk_tree" model="ir.ui.view">
+      <field name="name">pemesanan_atk.barang_atk.tree</field>
+      <field name="model">pemesanan_atk.barang_atk</field>
+      <field name="arch" type="xml">
+        <tree decoration-muted="active == False">
+          <field name="active" invisible="1"/>
+          <field name="name"/>
+          <field name="stok_barang"/>
+          <field name="harga_barang"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_barang_atk_form" model="ir.ui.view">
+      <field name="name">pemesanan_atk.barang_atk.form</field>
+      <field name="model">pemesanan_atk.barang_atk</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="active"/>
+            </group>
+            <group>
+              <field name="stok_barang"/>
+              <field name="harga_barang"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <menuitem id="menu_barang_atk" name="Barang ATK" parent="menu_master"
+              action="action_barang_atk"/>
+
+  </data>
+</odoo>

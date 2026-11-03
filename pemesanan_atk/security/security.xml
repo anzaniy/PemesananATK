@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!-- Grup: user boleh membuat/mengubah pengajuannya sendiri,
+             manager boleh mengelola master dan menyetujui transaksi. -->
+        <record id="group_user" model="res.groups">
+            <field name="name">Pemesanan ATK / User</field>
+        </record>
+
+        <record id="group_manager" model="res.groups">
+            <field name="name">Pemesanan ATK / Manager</field>
+            <field name="implied_ids" eval="[(4, ref('group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <!-- Record rules: user hanya melihat pengajuan miliknya sendiri,
+             manager melihat semua. -->
+        <record id="rule_transaksi_user" model="ir.rule">
+            <field name="name">Transaksi: milik sendiri</field>
+            <field name="model_id" ref="model_pemesanan_atk_transaksi_barang"/>
+            <field name="groups" eval="[(4, ref('group_user'))]"/>
+            <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        </record>
+
+        <record id="rule_transaksi_manager" model="ir.rule">
+            <field name="name">Transaksi: semua data (manager)</field>
+            <field name="model_id" ref="model_pemesanan_atk_transaksi_barang"/>
+            <field name="groups" eval="[(4, ref('group_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+
+        <record id="rule_transaksi_line_user" model="ir.rule">
+            <field name="name">Transaksi Line: milik sendiri</field>
+            <field name="model_id" ref="model_pemesanan_atk_transaksi_line"/>
+            <field name="groups" eval="[(4, ref('group_user'))]"/>
+            <field name="domain_force">[('transaksi_id.create_uid', '=', user.id)]</field>
+        </record>
+
+        <record id="rule_transaksi_line_manager" model="ir.rule">
+            <field name="name">Transaksi Line: semua data (manager)</field>
+            <field name="model_id" ref="model_pemesanan_atk_transaksi_line"/>
+            <field name="groups" eval="[(4, ref('group_manager'))]"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+        </record>
+    </data>
+</odoo>
