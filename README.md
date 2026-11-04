@@ -1,42 +1,42 @@
 # Pemesanan ATK — Odoo 10
 
-Modul Odoo 10 untuk pengajuan alat tulis kantor (ATK): master barang dan
-departemen, transaksi dengan alur persetujuan, validasi stok, serta laporan PDF
-dan Excel.
+An Odoo 10 module for office stationery (ATK) requests: item and department
+masters, a transaction approval workflow, stock validation, and PDF/Excel
+reports.
 
 ```
-Draft  ->  Diajukan (RFA)  ->  Disetujui
-                          \->  Ditolak
+Draft  ->  Submitted (RFA)  ->  Approved
+                            \->  Rejected
 ```
 
-Dibuat sebagai proyek individu, bukan bagian dari modul perusahaan mana pun.
+Built as an individual project, not part of any company's module.
 
-## Instalasi singkat
+## Quick install
 
-Prasyarat: Odoo 10 dan modul [OCA `report_xlsx`](https://github.com/OCA/reporting-engine)
-versi 10.0.
+Requirements: Odoo 10 and the
+[OCA `report_xlsx`](https://github.com/OCA/reporting-engine) module, version 10.0.
 
 ```bash
 git clone https://github.com/anzaniy/PemesananATK.git
-# salin folder pemesanan_atk ke direktori addons, lalu:
-odoo-bin -c odoo.conf -d nama_database -i pemesanan_atk --stop-after-init
+# copy the pemesanan_atk folder into your addons directory, then:
+odoo-bin -c odoo.conf -d your_database -i pemesanan_atk --stop-after-init
 ```
 
-Setelah terpasang, berikan role **Pemesanan ATK / Manager** kepada user yang
-akan menyetujui pengajuan (Settings > Users).
+After installation, assign the **Pemesanan ATK / Manager** role to the user
+who will approve requests (Settings > Users).
 
-## Fitur
+## Features
 
-- Master barang (nama, stok, harga, aktif/nonaktif) dan master departemen
-- Transaksi header + rincian barang, total dihitung otomatis
-- Alur status Draft / Diajukan / Disetujui / Ditolak dengan tombol per grup
-- Validasi jumlah terhadap stok
-- Grup User dan Manager, record rule per pemilik data
-- Laporan PDF (QWeb), laporan Excel per transaksi, dan rekap Excel per status
-  dengan rentang tanggal
+- Item master (name, stock, price, active flag) and department master
+- Transaction header + item lines, total computed automatically
+- Draft / Submitted / Approved / Rejected status flow with per-group buttons
+- Quantity validation against stock
+- User and Manager groups, record rules per data owner
+- PDF report (QWeb), Excel report per transaction, and Excel recap per status
+  with a date range
 
-Rincian lengkap ada di [`pemesanan_atk/README.md`](pemesanan_atk/README.md).
+Full details are in [`pemesanan_atk/README.md`](pemesanan_atk/README.md).
 
-## Lisensi
+## License
 
-LGPL-3 — lihat [`pemesanan_atk/LICENSE`](pemesanan_atk/LICENSE).
+LGPL-3 — see [`pemesanan_atk/LICENSE`](pemesanan_atk/LICENSE).
